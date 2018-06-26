@@ -20,7 +20,7 @@ def train_predict(X_train, X_test, y_train, y_test, models, acc=True, con_mat=Tr
         print_results(y_test, preds[name], name, acc=acc, con_mat=con_mat, class_rep=class_rep)
  
 
-def optimize_models(X_train, X_test, y_train, y_test, models, params, seed, cv_n_splits=10, show_best_params = True, con_mat=True, class_rep=False, use_kfold=True):
+def optimize_models(X_train, X_test, y_train, y_test, models, params, seed, cv_n_splits=10, show_best_params = True, acc=True, con_mat=True, class_rep=False, use_kfold=True):
     from sklearn.model_selection import GridSearchCV, KFold
     
     if use_kfold:
@@ -38,7 +38,7 @@ def optimize_models(X_train, X_test, y_train, y_test, models, params, seed, cv_n
         
         best_pred_prob = best_clf.predict_proba(X_test)[:,1]
         
-        print_results(y_test, best_pred, model_name, acc=True,con_mat=con_mat,class_rep=class_rep)
+        print_results(y_test, best_pred, model_name, acc=acc,con_mat=con_mat,class_rep=class_rep)
         if show_best_params:
             print grid_fit.best_params_
         
